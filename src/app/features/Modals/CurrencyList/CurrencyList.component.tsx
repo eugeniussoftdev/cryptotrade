@@ -59,18 +59,22 @@ export const CurrencyList = ({ handleSelectedCurrencyPairs }: any) => {
       <div>
         <SearchInput onSearch={setSearchValue} value={searchValue} />
       </div>
-      <div className="flex p-4">
+      <div className="flex p-4 gap-4">
         <div
-          className={`flex gap-2 w-1/2 ${
-            nextPairIndex === 0 ? "border-2 border-rose-500" : ""
+          className={`flex gap-2 w-1/2 p-4 ${
+            nextPairIndex === 0
+              ? "border-2 border-green-600"
+              : "border-2 border-[#271A3E]"
           } rounded-2xl`}
         >
           <span>Pay with:</span>
           <span>{chosenCurrencyPair[0]?.name}</span>
         </div>
         <div
-          className={`flex gap-2 w-1/2 ${
-            nextPairIndex === 1 ? "border-2 border-rose-500" : ""
+          className={`flex gap-2 w-1/2 p-4 ${
+            nextPairIndex === 1
+              ? "border-2 border-green-600"
+              : "border-2 border-[#271A3E]"
           } rounded-2xl`}
         >
           <span>You receive:</span>

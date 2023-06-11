@@ -6,6 +6,7 @@ export const Content = () => {
   return (
     <div>
       <CryptoExchange />
+      {/* Other block can be present here */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Content, Card, Navbar } from "./components";
+import { Content, Navbar } from "./components";
 
 export default async function Home() {
   return (

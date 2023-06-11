@@ -1,13 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 
 const OrderBook = () => {
   const [orderBookData, setOrderBookData] = useState<any>([]);
+  const searchParams = useSearchParams();
   useEffect(() => {
-    const socket = new WebSocket(
-      "wss://stream.binance.com:9443/ws/btcusdt@depth"
-    );
+    const coinPair = searchParams.get("pair");
+    const URL = `wss://stream.binance.com:9443/ws/${coinPair?.toLocaleLowerCase()}@depth`;
+    const socket = new WebSocket(URL);
 
     socket.onopen = () => {
       console.log("WebSocket connection established.");
@@ -22,20 +24,48 @@ const OrderBook = () => {
     return () => {
       socket.close();
     };
-  }, []);
+  }, [searchParams]);
 
   return (
-    <div className="flex justify-center">
-      <div className="flex gap-8 p-24 h-full overflow-auto">
-        <div>
-          {orderBookData[0]?.map(([price, qty]: any) => {
-            return <p key={price+qty}>{price} {qty}</p>;
-          })}
+    <div className="container mx-auto">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex-1">
+          <h2 className="text-lg font-semibold mb-2">Bids</h2>
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="py-2">Price</th>
+                <th className="py-2">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderBookData[0]?.map(([price, qty]: any) => (
+                <tr key={price + qty}>
+                  <td className="py-1">{price}</td>
+                  <td className="py-1">{qty}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div>
-          {orderBookData[1]?.map(([price, qty]: any) => {
-            return <p key={price+qty}>{price} {qty}</p>;
-          })}
+        <div className="flex-1">
+          <h2 className="text-lg font-semibold mb-2">Asks</h2>
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="py-2">Price</th>
+                <th className="py-2">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderBookData[1]?.map(([price, qty]: any) => (
+                <tr key={price + qty}>
+                  <td className="py-1">{price}</td>
+                  <td className="py-1">{qty}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

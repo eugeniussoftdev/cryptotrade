@@ -30,7 +30,7 @@ export const CryptoExchange = () => {
       </div>
       <div className="flex justify-center">
         <Link
-          href="/order-book"
+          href={{ pathname: "/order-book", query: {pair: `${selectedCurrencyPair[0]?.symbol}${selectedCurrencyPair[1]?.symbol}`} }}
           className="py-2 px-6 border-2 border-rose-500 text-rose-500 rounded-2xl hover:border-rose-400 hover:text-rose-400"
         >
           Order Book
