@@ -33,7 +33,7 @@ export const CurrencyList = ({ handleSelectedCurrencyPairs }: any) => {
 
   useEffect(() => {
     if (searchValue.trim()) {
-      const filteredCoins = originCoinsList.filter((coin) => {
+      const filteredCoins = originCoinsList.filter((coin: any) => {
         return coin?.name?.toLowerCase().includes(searchValue.toLowerCase());
       });
 
@@ -45,8 +45,8 @@ export const CurrencyList = ({ handleSelectedCurrencyPairs }: any) => {
     handleSelectedCurrencyPairs(chosenCurrencyPair);
   }, [chosenCurrencyPair]);
 
-  const handleSelectCurrency = (currency) => {
-    setChosenCurrencyPair((prevState) => {
+  const handleSelectCurrency = (currency: any) => {
+    setChosenCurrencyPair((prevState: any) => {
       const newPrevState = [...prevState];
       newPrevState[nextPairIndex] = currency;
       return newPrevState;

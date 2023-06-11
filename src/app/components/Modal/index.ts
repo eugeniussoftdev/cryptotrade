@@ -1,2 +1,2 @@
 
-export * from "./Modal.component.tsx";
+export * from "./Modal.component";

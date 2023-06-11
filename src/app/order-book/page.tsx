@@ -29,12 +29,12 @@ const OrderBook = () => {
       <div className="flex gap-8 p-24 h-full overflow-auto">
         <div>
           {orderBookData[0]?.map(([price, qty]: any) => {
-            return <p>{price} {qty}</p>;
+            return <p key={price+qty}>{price} {qty}</p>;
           })}
         </div>
         <div>
           {orderBookData[1]?.map(([price, qty]: any) => {
-            return <p>{price} {qty}</p>;
+            return <p key={price+qty}>{price} {qty}</p>;
           })}
         </div>
       </div>
